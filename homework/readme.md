@@ -142,18 +142,20 @@ VALUES (378, 51, 91, 20, '2015-02-09 00:45:31.307668');
 
 
 Hard Mode:
+
 10. What item was ordered most often? Grossed the most money?
 
 SELECT title, item_id, count(item_id) FROM items join orders ON orders.item_id = items.id Group by orders.item_id ORDER BYcount(item_id) DESC LIMIT 5;
-Ergonomic Concrete Gloves  10          9
-Practical Rubber Computer  46          9
-Incredible Granite Car     65          9
+Ergonomic Concrete Gloves    9
+Practical Rubber Computer    9
+Incredible Granite Car       9
+
 
 SELECT title, item_id, count(item_id),price,sum(quantity), price * sum(quantity) FROM items join orders ON orders.item_id = items.id Group by orders.item_id ORDER BY price * sum(quantity) DESC LIMIT 5;
 <!-- title                   item_id     count(item_id)  price       sum(quantity)  price*sum(quantity)
 ----------------------  ----------  --------------  ----------  -------------  ------- --><!-- ------------
 Incredible Granite Car  65          9               7295        72             525240 -->
-Incredible Granite Car : 525240
+Incredible Granite Car :  525240
 
 11. What user spent the most?
 
@@ -166,7 +168,7 @@ ORDER BY sum(price*quantity) DESC LIMIT 5;
 <!-- first_name  last_name   user id     item id     price       sum(price*quantity)
 ----------  ----------  ----------  ----------  ----------  -------------------
 Hassan      Runte       19          85          4849        639386 -->
-Hassan      Runte : 639386
+Hassan Runte :   639386
 
 
 12. What were the top 3 highest grossing categories?
@@ -175,13 +177,15 @@ FROM orders
 JOIN items ON orders.item_id = items.id
 Group by category
 ORDER BY sum(price*quantity) DESC LIMIT 3;
+
 <!-- category                  number of orders  total items ordered  sum(price*quantity)
 ------------------------  ----------------  -------------------  -------------------
 Music, Sports & Clothing  9                 72                   525240
 Beauty, Toys & Sports     7                 54                   449496
 Sports                    17                102                  448410 -->
 
-Music, Sports & Clothing  9                 72                   525240
-Beauty, Toys & Sports     7                 54                   449496
-Sports                    17                102                  448410
+
+Music, Sports & Clothing  525240
+Beauty, Toys & Sports     449496
+Sports                    448410
 
