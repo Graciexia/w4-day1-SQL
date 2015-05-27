@@ -44,25 +44,27 @@ No. It is then smae book: "Ergonomic Granite Chair"
 4.Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
 SELECT * FROM addresses WHERE street='6439 Zetta Hills'AND city='Willmouth'AND state='WY';
-id|user_id|street|city|state|zip
-43|40|6439 Zetta Hills|Willmouth|WY|15029
+<!-- id|user_id|street|city|state|zip
+43|40|6439 Zetta Hills|Willmouth|WY|15029 -->
+user_id='40'
 
 SELECT * FROM addresses WHERE user_id='40';
-Yes. Another adress is "54369 Wolff Forges|Lake Bryon|CA|31587"
+Yes. Another adress is "54369 Wolff Forges, Lake Bryon, CA,31587"
 
 
 5.Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
 SELECT * FROM users WHERE first_name='Virginie' AND last_name='Mitchell';
-id|first_name|last_name|email
-39|Virginie|Mitchell|daisy.crist@altenwerthmonahan.biz
+<!-- id|first_name|last_name|email
+39|Virginie|Mitchell|daisy.crist@altenwerthmonahan.biz -->
+user_id ='39'
 
 UPDATE addresses SET city='New York',state='NY',zip='10108' WHERE user_id ='39';
 
-SELECT * FROM addresses WHERE user_id = '39';
+<!-- SELECT * FROM addresses WHERE user_id = '39';
 id|user_id|street|city|state|zip
 41|39|12263 Jake Crossing|New York|NY|10108
-42|39|83221 Mafalda Canyon|New York|NY|10108
+42|39|83221 Mafalda Canyon|New York|NY|10108 -->
 
 
 6.How much would it cost to buy one of each tool?
@@ -74,10 +76,11 @@ SELECT SUM(price) FROM items WHERE category = 'Tools';
 7.How many total items did we sell?
 
 SELECT * FROM items WHERE category = 'Tools';
-id|title|category|description|price
+<!-- id|title|category|description|price
 32|Practical Rubber Shirt|Tools|De-engineered multimedia info-mediaries|1107
 80|Incredible Plastic Gloves|Tools|Operative mission-critical emulation|5437
-87|Awesome Plastic Shirt|Tools|Balanced multimedia paradigm|83
+87|Awesome Plastic Shirt|Tools|Balanced multimedia paradigm|83 -->
+item_id = 32 OR 80 OR 87
 
 SELECT SUM(quantity) FROM orders WHERE item_id = 32 OR 80 OR 87;
 2125
@@ -147,10 +150,10 @@ Practical Rubber Computer  46          9
 Incredible Granite Car     65          9
 
 SELECT title, item_id, count(item_id),price,sum(quantity), price * sum(quantity) FROM items join orders ON orders.item_id = items.id Group by orders.item_id ORDER BY price * sum(quantity) DESC LIMIT 5;
-title                   item_id     count(item_id)  price       sum(quantity)  price*sum(quantity)
-----------------------  ----------  --------------  ----------  -------------  -------------------
-Incredible Granite Car  65          9               7295        72             525240
-
+<!-- title                   item_id     count(item_id)  price       sum(quantity)  price*sum(quantity)
+----------------------  ----------  --------------  ----------  -------------  ------- --><!-- ------------
+Incredible Granite Car  65          9               7295        72             525240 -->
+Incredible Granite Car : 525240
 
 11. What user spent the most?
 
@@ -160,9 +163,10 @@ JOIN orders ON users.id = orders.user_id
 JOIN items ON orders.item_id = items.id
 Group by users.id
 ORDER BY sum(price*quantity) DESC LIMIT 5;
-first_name  last_name   user id     item id     price       sum(price*quantity)
+<!-- first_name  last_name   user id     item id     price       sum(price*quantity)
 ----------  ----------  ----------  ----------  ----------  -------------------
-Hassan      Runte       19          85          4849        639386
+Hassan      Runte       19          85          4849        639386 -->
+Hassan      Runte : 639386
 
 
 12. What were the top 3 highest grossing categories?
@@ -171,8 +175,13 @@ FROM orders
 JOIN items ON orders.item_id = items.id
 Group by category
 ORDER BY sum(price*quantity) DESC LIMIT 3;
-category                  number of orders  total items ordered  sum(price*quantity)
+<!-- category                  number of orders  total items ordered  sum(price*quantity)
 ------------------------  ----------------  -------------------  -------------------
 Music, Sports & Clothing  9                 72                   525240
 Beauty, Toys & Sports     7                 54                   449496
+Sports                    17                102                  448410 -->
+
+Music, Sports & Clothing  9                 72                   525240
+Beauty, Toys & Sports     7                 54                   449496
 Sports                    17                102                  448410
+
