@@ -152,9 +152,11 @@ Incredible Granite Car       9
 
 
 SELECT title, item_id, count(item_id),price,sum(quantity), price * sum(quantity) FROM items join orders ON orders.item_id = items.id Group by orders.item_id ORDER BY price * sum(quantity) DESC LIMIT 5;
+
 <!-- title                   item_id     count(item_id)  price       sum(quantity)  price*sum(quantity)
 ----------------------  ----------  --------------  ----------  -------------  ------- --><!-- ------------
 Incredible Granite Car  65          9               7295        72             525240 -->
+
 Incredible Granite Car :  525240
 
 11. What user spent the most?
@@ -165,9 +167,11 @@ JOIN orders ON users.id = orders.user_id
 JOIN items ON orders.item_id = items.id
 Group by users.id
 ORDER BY sum(price*quantity) DESC LIMIT 5;
+
 <!-- first_name  last_name   user id     item id     price       sum(price*quantity)
 ----------  ----------  ----------  ----------  ----------  -------------------
 Hassan      Runte       19          85          4849        639386 -->
+
 Hassan Runte :   639386
 
 
